@@ -1,23 +1,505 @@
+<template>
+  <AppLayout>
+    <main class="container">
+      <div class="cloud-banner">
+        <div class="cloud-banner-text">
+          <h1>☁️ 云养猫计划</h1>
+          <p>即使不能亲自收养，也能用爱陪伴一只流浪猫长大。</p>
+        </div>
+        <div class="banner-stats">
+          <div class="stat-item">
+            <span class="stat-number">156</span>
+            <span class="stat-label">位云养家长</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">42</span>
+            <span class="stat-label">只猫咪受助</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3.2w</span>
+            <span class="stat-label">累计善款</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="color:#4a2c1e; font-size:22px; margin-top:8px;">🐱 正在等待云家长的猫咪</h3>
+      <p style="color:#8a7a6e; margin-bottom:4px;">选择一只你心动的猫咪，每月一杯奶茶钱，就能成为它的云家长</p>
+
+      <div class="cloud-cats-grid">
+        <div v-for="cat in cloudCats" :key="cat.name" class="cloud-cat-card">
+          <img class="cat-avatar" :src="cat.image" :alt="cat.alt" />
+          <div class="cat-name">{{ cat.name }}</div>
+          <div class="cat-meta">{{ cat.meta }}</div>
+          <div class="progress-wrap">
+            <div class="progress-bar" :style="{ width: cat.progress }"></div>
+          </div>
+          <div class="progress-label">{{ cat.progressLabel }}</div>
+          <span class="cat-status" :class="cat.statusClass">{{ cat.status }}</span>
+          <div style="margin-top:10px;">
+            <RouterLink to="/contact" class="btn" style="padding:4px 20px; font-size:14px;">云养它</RouterLink>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="color:#4a2c1e; font-size:22px; margin-top:12px;">💝 选择你的云养方式</h3>
+      <p style="color:#8a7a6e; margin-bottom:4px;">所有善款将 100% 用于猫咪的猫粮、猫砂和基础医疗</p>
+
+      <div class="plan-grid">
+        <div v-for="plan in plans" :key="plan.name" class="plan-card" :class="{ recommended: plan.recommended }">
+          <span class="plan-icon">{{ plan.icon }}</span>
+          <div class="plan-price">{{ plan.price }} <small>/月</small></div>
+          <div class="plan-name">{{ plan.name }}</div>
+          <div class="plan-desc">{{ plan.desc }}</div>
+          <ul class="plan-features">
+            <li v-for="feature in plan.features" :key="feature">{{ feature }}</li>
+          </ul>
+          <RouterLink to="/contact" class="btn-plan">选择</RouterLink>
+        </div>
+      </div>
+
+      <h3 style="color:#4a2c1e; font-size:22px; margin-top:8px;">💬 云家长们说</h3>
+
+      <div class="testimonial-grid">
+        <div v-for="item in testimonials" :key="item.name" class="testimonial-card">
+          <div class="quote"> {{ item.quote }} </div>
+          <div class="author">
+            <img :src="item.avatar" alt="用户" />
+            <div>
+              <div class="name">{{ item.name }}</div>
+              <div class="role">{{ item.role }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </AppLayout>
+</template>
+
 <script setup>
-import AppHeader from '../components/AppHeader.vue'
-import AppFooter from '../components/AppFooter.vue'
+import AppLayout from '../components/AppLayout.vue'
+
+const cloudCats = [
+  {
+    name: '🍊 小橘',
+    meta: '4个月 · 男孩',
+    progress: '78%',
+    progressLabel: '已筹 78% · 目标 30 元/月',
+    status: '🔥 热选中',
+    statusClass: 'active',
+    image: 'https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=600',
+    alt: '小橘',
+  },
+  {
+    name: '🖤 小黑',
+    meta: '1岁 · 男孩',
+    progress: '45%',
+    progressLabel: '已筹 45% · 目标 30 元/月',
+    status: '🔥 热选中',
+    statusClass: 'active',
+    image: 'https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=600',
+    alt: '小黑',
+  },
+  {
+    name: '🌸 三花宝宝',
+    meta: '3个月 · 女孩',
+    progress: '92%',
+    progressLabel: '已筹 92% · 目标 30 元/月',
+    status: '🎉 即将满员',
+    statusClass: 'full',
+    image: 'https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?auto=compress&cs=tinysrgb&w=600',
+    alt: '三花宝宝',
+  },
+  {
+    name: '🤍 小白',
+    meta: '6个月 · 女孩',
+    progress: '30%',
+    progressLabel: '已筹 30% · 目标 30 元/月',
+    status: '💤 待启动',
+    statusClass: 'paused',
+    image: 'https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?auto=compress&cs=tinysrgb&w=600',
+    alt: '小白',
+  },
+]
+
+const plans = [
+  {
+    icon: '🌱',
+    price: '¥19',
+    name: '萌芽计划',
+    desc: '适合学生党，微小善意也是光',
+    features: ['猫咪电子明信片', '月度成长报告'],
+    recommended: false,
+  },
+  {
+    icon: '🌸',
+    price: '¥39',
+    name: '花开计划',
+    desc: '最受欢迎，给猫咪稳稳的幸福',
+    features: ['专属云家长证书', '每月猫咪高清照片', '优先线下探访资格'],
+    recommended: true,
+  },
+  {
+    icon: '🌟',
+    price: '¥59',
+    name: '星光计划',
+    desc: '深度陪伴，见证猫咪蜕变',
+    features: ['专属云家长证书', '每月视频日记', '猫咪专属名牌挂牌', '年度文创礼包'],
+    recommended: false,
+  },
+]
+
+const testimonials = [
+  {
+    quote: ' 每个月收到小橘的照片是我最期待的时刻，看着它一点点变胖，好有成就感！ ',
+    name: '小鹿',
+    role: '云养小橘 · 8个月',
+    avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200',
+  },
+  {
+    quote: ' 虽然不能亲自养猫，但云养猫让我感觉和一只猫建立了真实的联结，很温暖。 ',
+    name: '阿杰',
+    role: '云养小黑 · 5个月',
+    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
+  },
+  {
+    quote: ' 看到三花宝宝从瘦弱变得圆润，真的特别感动。云养猫是我做过最值得的月捐。 ',
+    name: '小晴',
+    role: '云养三花宝宝 · 3个月',
+    avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200',
+  },
+]
 </script>
 
-<template>
-  <AppHeader />
-
-  <main class="container">
-    <h2 class="section-title">云养猫计划</h2>
-    <div class="info-box">
-      <p>每个月只需30元，就可以“云认养”一只等待领养的猫咪，为它提供猫粮、猫砂和基础医疗。</p>
-      <p>你将定期收到猫咪的照片和成长日记，见证它变好的每一步。</p>
-      <router-link to="/contact" class="btn btn--large">参与云养猫</router-link>
-    </div>
-    <div class="info-box info-box--highlight">
-      <h3>当前可云养的猫咪</h3>
-      <p>小橘（4个月） | 小黑（1岁） | 三花宝宝们（3个月）</p>
-    </div>
-  </main>
-
-  <AppFooter />
-</template>
+<style scoped>
+.cloud-banner {
+  background: linear-gradient(135deg, #c17b5c, #d68f6e, #e8b89a);
+  border-radius: 32px;
+  padding: 48px 40px;
+  margin: 20px 0 32px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.cloud-banner::before {
+  content: '🐾';
+  position: absolute;
+  right: -20px;
+  top: -30px;
+  font-size: 140px;
+  opacity: 0.10;
+  transform: rotate(15deg);
+}
+.cloud-banner::after {
+  content: '🐱';
+  position: absolute;
+  left: 40%;
+  bottom: -20px;
+  font-size: 100px;
+  opacity: 0.08;
+  transform: rotate(-10deg);
+}
+.cloud-banner-text {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+.cloud-banner-text h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.cloud-banner-text p {
+  font-size: 18px;
+  opacity: 0.90;
+  max-width: 480px;
+}
+.cloud-banner .banner-stats {
+  display: flex;
+  gap: 32px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  padding: 20px 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.15);
+  position: relative;
+  z-index: 2;
+}
+.cloud-banner .banner-stats .stat-item {
+  text-align: center;
+}
+.cloud-banner .banner-stats .stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  display: block;
+}
+.cloud-banner .banner-stats .stat-label {
+  font-size: 13px;
+  opacity: 0.80;
+}
+.cloud-cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin: 28px 0 36px;
+}
+.cloud-cat-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 28px;
+  padding: 24px 20px 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 16px rgba(120, 80, 60, 0.05);
+}
+.cloud-cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(120, 80, 60, 0.10);
+}
+.cloud-cat-card .cat-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 16px rgba(120, 80, 60, 0.12);
+  margin-bottom: 12px;
+}
+.cloud-cat-card .cat-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4a2c1e;
+}
+.cloud-cat-card .cat-meta {
+  font-size: 14px;
+  color: #8a7a6e;
+  margin: 2px 0 10px;
+}
+.cloud-cat-card .progress-wrap {
+  background: #f5ede8;
+  border-radius: 30px;
+  height: 8px;
+  overflow: hidden;
+  margin: 12px 0 8px;
+}
+.cloud-cat-card .progress-wrap .progress-bar {
+  height: 100%;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #c17b5c, #e8b89a);
+  transition: width 0.6s ease;
+}
+.cloud-cat-card .progress-label {
+  font-size: 13px;
+  color: #8a7a6e;
+}
+.cloud-cat-card .cat-status {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 16px;
+  border-radius: 30px;
+  margin-top: 8px;
+}
+.cat-status.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.cat-status.paused {
+  background: #fff3e0;
+  color: #e67e22;
+}
+.cat-status.full {
+  background: #fce8e6;
+  color: #b33a34;
+}
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 24px 0 32px;
+}
+.plan-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 28px;
+  padding: 28px 20px 24px;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s;
+  cursor: default;
+}
+.plan-card:hover {
+  border-color: #c17b5c;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(120, 80, 60, 0.08);
+}
+.plan-card .plan-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 6px;
+}
+.plan-card .plan-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4a2c1e;
+}
+.plan-card .plan-price small {
+  font-size: 14px;
+  font-weight: 400;
+  color: #8a7a6e;
+}
+.plan-card .plan-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4a2c1e;
+  margin: 4px 0 2px;
+}
+.plan-card .plan-desc {
+  font-size: 14px;
+  color: #8a7a6e;
+  margin-bottom: 8px;
+}
+.plan-card .plan-features {
+  font-size: 14px;
+  color: #6a5a4e;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 200px;
+  margin: 0 auto;
+}
+.plan-card .plan-features li {
+  padding: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.plan-card .plan-features li::before {
+  content: '✓';
+  color: #c17b5c;
+  font-weight: 700;
+}
+.plan-card .btn-plan {
+  margin-top: 14px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 30px;
+  background: #c17b5c;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.plan-card .btn-plan:hover {
+  background: #d68f6e;
+  transform: scale(1.03);
+}
+.plan-card.recommended {
+  border-color: #c17b5c;
+  background: rgba(255, 248, 244, 0.8);
+  position: relative;
+}
+.plan-card.recommended::after {
+  content: '⭐ 推荐';
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: linear-gradient(135deg, #c17b5c, #e8b89a);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 16px;
+  border-radius: 30px;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin: 24px 0 16px;
+}
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 24px;
+  padding: 24px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.testimonial-card .quote {
+  font-size: 15px;
+  color: #4a3a2e;
+  line-height: 1.7;
+}
+.testimonial-card .quote::before {
+  content: '"';
+  font-size: 28px;
+  color: #c17b5c;
+  font-weight: 700;
+}
+.testimonial-card .quote::after {
+  content: '"';
+  font-size: 28px;
+  color: #c17b5c;
+  font-weight: 700;
+}
+.testimonial-card .author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.testimonial-card .author img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.testimonial-card .author .name {
+  font-weight: 600;
+  color: #4a2c1e;
+  font-size: 15px;
+}
+.testimonial-card .author .role {
+  font-size: 13px;
+  color: #8a7a6e;
+}
+@media (max-width: 720px) {
+  .cloud-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+  .cloud-banner .banner-stats {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+  }
+  .cloud-banner-text h1 {
+    font-size: 28px;
+  }
+  .cloud-banner::before,
+  .cloud-banner::after {
+    display: none;
+  }
+  .plan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 460px) {
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+  .cloud-banner .banner-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+</style>

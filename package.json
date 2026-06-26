@@ -1,7 +1,7 @@
 {
-  "name": "mao-yu-sen-lin-vue",
+  "name": "catforest",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.34",
-    "vue-router": "^4.6.4"
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.6",
-    "vite": "^8.0.12"
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.7"
   }
 }

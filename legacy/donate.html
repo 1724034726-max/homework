@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>页面标题 · 猫语森林</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="auth.js" defer></script>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="猫语森林" />
+                <span class="logo-text">猫语<span>森林</span></span>
+            </a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="cat-guide.html">猫咪图鉴</a></li>
+                <li><a href="rescue-stories.html">救助故事</a></li>
+                <li><a href="cloud-adopt.html">云养猫</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.php">联系我们</a></li>
+                <li id="userAreaContainer"></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+        <h2 class="section-title">❤️ 爱心捐赠</h2>
+        
+        <div class="info-box">
+            <p style="font-size:20px;">每一笔捐款，都将直接用于流浪猫的 <strong>医疗救助、猫粮采购和绝育手术</strong>。</p>
+            <p style="color:#C17B5C; font-size:24px; font-weight:bold;">感恩每一份善意 🙏</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:20px; margin-bottom:30px;">
+            <div style="background:white; padding:25px; border-radius:20px; box-shadow:0 8px 16px rgba(0,0,0,0.1); text-align:center;">
+                <div style="font-size:48px;">🍚</div>
+                <h3 style="color:#C17B5C;">猫粮基金</h3>
+                <p>30元 ≈ 一只猫一周的口粮</p>
+            </div>
+            <div style="background:white; padding:25px; border-radius:20px; box-shadow:0 8px 16px rgba(0,0,0,0.1); text-align:center;">
+                <div style="font-size:48px;">💉</div>
+                <h3 style="color:#C17B5C;">医疗救助</h3>
+                <p>100元 ≈ 基础驱虫+疫苗</p>
+            </div>
+            <div style="background:white; padding:25px; border-radius:20px; box-shadow:0 8px 16px rgba(0,0,0,0.1); text-align:center;">
+                <div style="font-size:48px;">✂️</div>
+                <h3 style="color:#C17B5C;">绝育计划</h3>
+                <p>200元 ≈ 一只母猫的绝育手术费</p>
+            </div>
+        </div>
+
+        <div class="info-box" style="background-color:#FFF5E8;">
+            <h3 style="color:#C17B5C;">📦 捐赠方式（示例）</h3>
+            <p><strong>微信/支付宝：</strong> catforest@donate.com（请备注“猫语森林”）</p>
+            <p><strong>物资捐赠：</strong> 联系客服获取寄送地址（猫粮、猫砂、药品等）</p>
+            <p style="font-size:14px; color:#999; margin-top:15px;">* 本页面为课程演示，不构成真实募捐行为。</p>
+        </div>
+    </main>
+
+   
+<footer>
+    <div class="container footer-content">
+        <div class="social-links">
+            <a href="#">📱 微信</a> | <a href="#">📧 微博</a> | <a href="#">📷 小红书</a>
+        </div>
+        <p>&copy; 2025 猫语森林. 邓云心 版权所有.</p>
+        <p>本网站为课堂实验作品，图片来源于网络，如有侵权请联系删除。</p>
+    </div>
+</footer>
+
+<script>
+    // 渲染用户状态
+    (function() {
+        const userData = localStorage.getItem('catforest_user');
+        if (!userData) {
+            window.location.href = 'login.html';
+            return;
+        }
+        try {
+            const user = JSON.parse(userData);
+            const container = document.getElementById('userAreaContainer');
+            if (container) {
+                container.innerHTML = `
+                    <div class="user-area">
+                        <span class="user-avatar">${user.avatar || '🐱'}</span>
+                        <span class="user-name">${user.name || '守护者'}</span>
+                        <button class="btn-logout" id="logoutBtn">退出</button>
+                    </div>
+                `;
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+                    localStorage.removeItem('catforest_user');
+                    window.location.href = 'login.html';
+                });
+            }
+        } catch (e) {
+            localStorage.removeItem('catforest_user');
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+</body>
+</html>
+
+    

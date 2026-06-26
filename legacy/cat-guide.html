@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫咪图鉴 · 猫语森林</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 品种标签 */
+        .cat-tag {
+            display: inline-block;
+            background: #f5ede8;
+            color: #8a7a6e;
+            font-size: 12px;
+            padding: 2px 14px;
+            border-radius: 30px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        .cat-tag.popular {
+            background: #fce8e0;
+            color: #c17b5c;
+        }
+        .cat-tag.rare {
+            background: #e8f0f5;
+            color: #4a7a8a;
+        }
+    </style>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="猫语森林">
+                    <span class="logo-text">猫语<span>森林</span></span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="cat-guide.html">猫咪图鉴</a></li>
+                    <li><a href="rescue-stories.html">救助故事</a></li>
+                    <li><a href="cloud-adopt.html">云养猫</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                    <li id="userAreaContainer"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">🐈 猫咪品种图鉴</h2>
+        <p style="text-align:center; color:#8a7a6e; margin-top:-12px; margin-bottom:20px;">
+            认识更多猫咪朋友，找到属于你的那一只 ❤️
+        </p>
+
+        <div class="card-grid">
+            <!-- 1. 橘猫 -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=600" alt="橘猫">
+                <div class="card-content">
+                    <h3>🐱 橘猫</h3>
+                    <span class="cat-tag popular">🌟 人气王</span>
+                    <p>性格亲人，十个橘猫九个胖，还有一个特别胖。最受欢迎的中华田园猫之一。</p>
+                </div>
+            </div>
+
+            <!-- 2. 英国短毛猫 -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&w=600" alt="英国短毛猫">
+                <div class="card-content">
+                    <h3>🇬🇧 英国短毛猫</h3>
+                    <span class="cat-tag">🐾 温顺</span>
+                    <p>圆脸圆眼，性格安静温顺，毛色以蓝色最为经典，非常适合家庭饲养。</p>
+                </div>
+            </div>
+
+            <!-- 3. 暹罗猫 -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/320014/pexels-photo-320014.jpeg?auto=compress&cs=tinysrgb&w=600" alt="暹罗猫">
+                <div class="card-content">
+                    <h3>🇹🇭 暹罗猫</h3>
+                    <span class="cat-tag">💬 话痨</span>
+                    <p>拥有迷人的蓝色眼睛和重点色被毛，聪明好动，喜欢与人“聊天”。</p>
+                </div>
+            </div>
+
+            <!-- 4. 布偶猫 -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&w=600" alt="布偶猫">
+                <div class="card-content">
+                    <h3>🧸 布偶猫</h3>
+                    <span class="cat-tag popular">💖 粘人精</span>
+                    <p>体型较大，毛发柔软如丝，性格像狗狗一样粘人，是理想的室内伴侣猫。</p>
+                </div>
+            </div>
+
+            <!-- 5. 狸花猫（新增） -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/1643456/pexels-photo-1643456.jpeg?auto=compress&cs=tinysrgb&w=600" alt="狸花猫">
+                <div class="card-content">
+                    <h3>🐾 狸花猫</h3>
+                    <span class="cat-tag">🏆 中华名猫</span>
+                    <p>中国本土最古老的猫种之一，花纹独特，身体强壮，聪明独立且捕猎能力超强。</p>
+                </div>
+            </div>
+
+            <!-- 6. 美国短毛猫（新增） -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=600" alt="美国短毛猫">
+                <div class="card-content">
+                    <h3>🇺🇸 美国短毛猫</h3>
+                    <span class="cat-tag">💪 健壮</span>
+                    <p>体格结实，性格温和友善，标志性的银色虎斑纹，是家庭宠物的绝佳选择。</p>
+                </div>
+            </div>
+
+            <!-- 7. 无毛猫（新增） -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/2860825/pexels-photo-2860825.jpeg?auto=compress&cs=tinysrgb&w=600" alt="斯芬克斯无毛猫">
+                <div class="card-content">
+                    <h3>🔮 斯芬克斯无毛猫</h3>
+                    <span class="cat-tag rare">✨ 独特</span>
+                    <p>外貌独特，性情温顺黏人，皮肤需要定期护理，是猫中“小暖炉”。</p>
+                </div>
+            </div>
+
+            <!-- 8. 挪威森林猫（新增） -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/2714961/pexels-photo-2714961.jpeg?auto=compress&cs=tinysrgb&w=600" alt="挪威森林猫">
+                <div class="card-content">
+                    <h3>🌲 挪威森林猫</h3>
+                    <span class="cat-tag">❄️ 北欧精灵</span>
+                    <p>拥有浓密的双层被毛，体型高大健壮，性格友善沉稳，是猫界的“小狮子”。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#">📱 微信</a> | <a href="#">📧 微博</a> | <a href="#">📷 小红书</a>
+            </div>
+            <p>&copy; 2025 猫语森林. 邓云心 版权所有.</p>
+            <p>本网站为课堂实验作品，图片来源于网络，如有侵权请联系删除。</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const userData = localStorage.getItem('catforest_user');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                const user = JSON.parse(userData);
+                const container = document.getElementById('userAreaContainer');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="user-area">
+                            <span class="user-avatar">${user.avatar || '🐱'}</span>
+                            <span class="user-name">${user.name || '守护者'}</span>
+                            <button class="btn-logout" id="logoutBtn">退出</button>
+                        </div>
+                    `;
+                    document.getElementById('logoutBtn').addEventListener('click', function() {
+                        localStorage.removeItem('catforest_user');
+                        window.location.href = 'login.html';
+                    });
+                }
+            } catch (e) {
+                localStorage.removeItem('catforest_user');
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
+</body>
+</html>

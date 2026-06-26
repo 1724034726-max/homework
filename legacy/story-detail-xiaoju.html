@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>页面标题 · 猫语森林</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="auth.js" defer></script>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="猫语森林" />
+                <span class="logo-text">猫语<span>森林</span></span>
+            </a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="cat-guide.html">猫咪图鉴</a></li>
+                <li><a href="rescue-stories.html">救助故事</a></li>
+                <li><a href="cloud-adopt.html">云养猫</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="contact.php">联系我们</a></li>
+                <li id="userAreaContainer"></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+        <h2 class="section-title">❄️ 小橘的冬天</h2>
+        <div class="story-detail">
+            <img src="https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=600" alt="小橘猫">
+            <p><strong>📍 发现经过：</strong>去年12月寒潮来袭，志愿者在梅州某小区汽车底盘下发现一只瑟瑟发抖的小橘猫，约2个月大，体重仅400g，严重营养不良且有猫鼻支症状。</p>
+            
+            <div class="timeline">
+                <h4>📅 救助时间线</h4>
+                <ul>
+                    <li><strong>12月5日</strong> – 发现小橘，紧急送往合作医院</li>
+                    <li><strong>12月8日</strong> – 完成第一次体内外驱虫，开始抗病毒治疗</li>
+                    <li><strong>12月20日</strong> – 痊愈出院，体重增至800g，转入中途家庭</li>
+                    <li><strong>1月15日</strong> – 接种第一针猫三联疫苗</li>
+                    <li><strong>2月1日</strong> – 通过严格审核，被爱心家庭正式领养</li>
+                </ul>
+            </div>
+
+            <p><strong>🏡 领养后近况：</strong>小橘现在名叫“年糕”，在新家非常活泼，主人每天分享它的照片。它尤其喜欢趴在窗台看鸟，是家里的开心果。它的故事被发到群里后，激励了多位邻居关注流浪猫救助。</p>
+            <a href="rescue-stories.html" class="btn btn-large">← 返回救助故事列表</a>
+        </div>
+    </main>
+
+   
+<footer>
+    <div class="container footer-content">
+        <div class="social-links">
+            <a href="#">📱 微信</a> | <a href="#">📧 微博</a> | <a href="#">📷 小红书</a>
+        </div>
+        <p>&copy; 2025 猫语森林. 邓云心 版权所有.</p>
+        <p>本网站为课堂实验作品，图片来源于网络，如有侵权请联系删除。</p>
+    </div>
+</footer>
+
+<script>
+    // 渲染用户状态
+    (function() {
+        const userData = localStorage.getItem('catforest_user');
+        if (!userData) {
+            window.location.href = 'login.html';
+            return;
+        }
+        try {
+            const user = JSON.parse(userData);
+            const container = document.getElementById('userAreaContainer');
+            if (container) {
+                container.innerHTML = `
+                    <div class="user-area">
+                        <span class="user-avatar">${user.avatar || '🐱'}</span>
+                        <span class="user-name">${user.name || '守护者'}</span>
+                        <button class="btn-logout" id="logoutBtn">退出</button>
+                    </div>
+                `;
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+                    localStorage.removeItem('catforest_user');
+                    window.location.href = 'login.html';
+                });
+            }
+        } catch (e) {
+            localStorage.removeItem('catforest_user');
+            window.location.href = 'login.html';
+        }
+    })();
+</script>
+
+</body>
+</html>
+
+
+    

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题 · 猫语森林</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== FAQ 专属样式 ===== */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 22px 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(120, 80, 60, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 6px solid #c17b5c;
+            transition: transform 0.2s;
+        }
+        .faq-item:hover {
+            transform: translateX(4px);
+        }
+        .faq-item h3 {
+            color: #4a2c1e;
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+        .faq-item p {
+            color: #6a5a4e;
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ===== 提问模块（纯前端版） ===== */
+        .ask-box {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 40px 38px;
+            margin: 40px 0 50px;
+            box-shadow: 0 16px 48px rgba(120, 80, 60, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .ask-box .ask-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .ask-box .ask-header h3 {
+            color: #4a2c1e;
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+        .ask-box .ask-header p {
+            color: #8a7a6e;
+            font-size: 15px;
+        }
+
+        /* 错误横幅 */
+        .form-banner-error {
+            background: #fce8e6;
+            border: 1px solid #f5cdc8;
+            border-radius: 20px;
+            padding: 12px 20px;
+            color: #b33a34;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-banner-error::before {
+            content: '⚠️';
+            font-size: 20px;
+        }
+
+        /* 表单布局 */
+        .ask-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .ask-form .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .ask-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a2c1e;
+            margin-bottom: 5px;
+        }
+        .ask-form label .required {
+            color: #d68f6e;
+            margin-left: 2px;
+        }
+
+        /* ===== 核心：输入框美化 ===== */
+        .ask-form input,
+        .ask-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8ddd5;
+            border-radius: 18px;
+            font-size: 16px;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            color: #3d2e24;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
+        }
+        .ask-form input::placeholder,
+        .ask-form textarea::placeholder {
+            color: #b0a098;
+            font-weight: 400;
+            font-size: 15px;
+        }
+        .ask-form input:focus,
+        .ask-form textarea:focus {
+            outline: none;
+            border-color: #c17b5c;
+            background: #ffffff;
+            box-shadow: 0 0 0 5px rgba(193, 123, 92, 0.10), inset 0 2px 4px rgba(0, 0, 0, 0.02);
+            transform: translateY(-1px);
+        }
+        .ask-form input {
+            height: 56px;
+        }
+        .ask-form textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        /* 提交按钮 */
+        .btn-ask {
+            background: linear-gradient(135deg, #c17b5c, #d68f6e);
+            color: #fff;
+            border: none;
+            padding: 14px 44px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+            display: inline-block;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(193, 123, 92, 0.2);
+        }
+        .btn-ask:hover {
+            transform: scale(1.04) translateY(-2px);
+            box-shadow: 0 14px 34px rgba(193, 123, 92, 0.30);
+        }
+        .btn-ask:active {
+            transform: scale(0.96);
+        }
+        .ask-form .btn-wrap {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* 成功状态 */
+        .success-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .success-box .success-icon {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .success-box h4 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .success-box p {
+            color: #6a5a4e;
+            font-size: 17px;
+        }
+        .success-box .btn-back {
+            display: inline-block;
+            margin-top: 18px;
+            background: #c17b5c;
+            color: #fff;
+            padding: 10px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .success-box .btn-back:hover {
+            background: #d68f6e;
+        }
+
+        /* 历史提问记录（新增小彩蛋） */
+        .history-toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .history-toggle button {
+            background: none;
+            border: none;
+            color: #8a7a6e;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .history-toggle button:hover {
+            color: #c17b5c;
+        }
+        .history-list {
+            margin-top: 16px;
+            background: rgba(245, 237, 232, 0.4);
+            border-radius: 20px;
+            padding: 16px 24px;
+            display: none;
+        }
+        .history-list.show {
+            display: block;
+        }
+        .history-list .history-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e8ddd5;
+            font-size: 14px;
+            color: #6a5a4e;
+        }
+        .history-list .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-list .history-item strong {
+            color: #4a2c1e;
+        }
+        .history-list .history-empty {
+            color: #b0a098;
+            font-size: 15px;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .ask-box {
+                padding: 24px 18px;
+            }
+            .ask-form .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .ask-form input {
+                height: 50px;
+            }
+            .btn-ask {
+                width: 100%;
+                padding: 14px;
+            }
+        }
+    </style>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="猫语森林">
+                    <span class="logo-text">猫语<span>森林</span></span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="cat-guide.html">猫咪图鉴</a></li>
+                    <li><a href="rescue-stories.html">救助故事</a></li>
+                    <li><a href="cloud-adopt.html">云养猫</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                    <li id="userAreaContainer"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">❓ 常见问题</h2>
+
+        <!-- FAQ 列表 -->
+        <div class="faq-item">
+            <h3>Q：领养猫咪需要付费吗？</h3>
+            <p>A：领养本身不收取费用，但领养人需承担猫咪后续的疫苗、绝育和日常开销（猫粮、猫砂等）。部分猫咪的首次驱虫和疫苗由我们承担。</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q：外地可以领养吗？</h3>
+            <p>A：目前仅限同城（梅州）领养，因为我们需要家访和定期回访。如果您在外地，可以先通过“云养猫”支持我们。</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q：云养猫的钱用在哪里？</h3>
+            <p>A：每月30元全部用于您认养猫咪的猫粮、猫砂和基础医疗。我们会定期在朋友圈和社群发布支出明细。</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q：我想救助一只流浪猫，该怎么做？</h3>
+            <p>A：首先确保自身安全，用食物引诱或使用诱捕笼。然后联系我们的救助热线，我们会指导您送医或安排接手。</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q：网站上的图片是真实的吗？</h3>
+            <p>A：救助故事中的图片均为真实拍摄，猫咪图鉴的品种图片来源于免费图库，仅用作科普展示。</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ===== 提问模块（纯前端版） ===== -->
+        <!-- ========================================== -->
+        <div class="ask-box" id="askSection">
+            <!-- 由 JavaScript 动态渲染 -->
+            <div id="askApp"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#">📱 微信</a> | <a href="#">📧 微博</a> | <a href="#">📷 小红书</a>
+            </div>
+            <p>&copy; 2025 猫语森林. 邓云心 版权所有.</p>
+            <p>本网站为课堂实验作品，图片来源于网络，如有侵权请联系删除。</p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- ===== 纯前端 JS 逻辑 ===== -->
+    <!-- ========================================== -->
+    <script>
+        (function() {
+            // ----- 1. 登录状态检查 -----
+            const userData = localStorage.getItem('catforest_user');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            // 渲染用户状态
+            try {
+                const user = JSON.parse(userData);
+                const container = document.getElementById('userAreaContainer');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="user-area">
+                            <span class="user-avatar">${user.avatar || '🐱'}</span>
+                            <span class="user-name">${user.name || '守护者'}</span>
+                            <button class="btn-logout" id="logoutBtn">退出</button>
+                        </div>
+                    `;
+                    document.getElementById('logoutBtn').addEventListener('click', function() {
+                        localStorage.removeItem('catforest_user');
+                        window.location.href = 'login.html';
+                    });
+                }
+            } catch (e) {
+                localStorage.removeItem('catforest_user');
+                window.location.href = 'login.html';
+            }
+
+            // ----- 2. FAQ 提问模块（纯前端 + localStorage） -----
+            const STORAGE_KEY = 'catforest_questions';
+
+            // 获取已存储的问题列表
+            function getQuestions() {
+                try {
+                    const data = localStorage.getItem(STORAGE_KEY);
+                    return data ? JSON.parse(data) : [];
+                } catch {
+                    return [];
+                }
+            }
+
+            // 保存问题
+            function saveQuestion(name, email, content) {
+                const questions = getQuestions();
+                questions.push({
+                    id: Date.now(),
+                    name: name,
+                    email: email || '未留邮箱',
+                    content: content,
+                    time: new Date().toLocaleString('zh-CN')
+                });
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+            }
+
+            // ----- 3. 渲染提问界面 -----
+            function renderAskApp() {
+                const app = document.getElementById('askApp');
+                // 检查 URL 参数是否显示成功状态
+                const params = new URLSearchParams(window.location.search);
+                const isSuccess = params.get('success') === '1';
+
+                if (isSuccess) {
+                    // 从 localStorage 读取最新一条提问者的名字
+                    const questions = getQuestions();
+                    const last = questions.length > 0 ? questions[questions.length - 1] : null;
+                    const name = last ? last.name : '你';
+
+                    app.innerHTML = `
+                        <div class="success-box">
+                            <span class="success-icon">✅</span>
+                            <h4>谢谢 ${name} 的提问！</h4>
+                            <p>我们会在 <strong>48 小时内</strong> 通过邮箱回复你（如果留了的话）。</p>
+                            <p style="font-size:14px; color:#8a7a6e; margin-top:4px;">一起帮助更多流浪猫 ❤️</p>
+                            <button class="btn-back" onclick="window.location.href='faq.html'">📝 继续提问</button>
+                        </div>
+                        ${renderHistoryToggle()}
+                    `;
+                    return;
+                }
+
+                // ---- 正常显示表单 ----
+                app.innerHTML = `
+                    <div class="ask-header">
+                        <h3>💬 我有问题想问</h3>
+                        <p>如果上面没有你想问的，在这里提交，我们会尽快回答你</p>
+                    </div>
+                    <div id="formError" class="form-banner-error" style="display:none;"></div>
+                    <form class="ask-form" id="askForm" onsubmit="handleAskSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ask_name">你的名字 <span class="required">*</span></label>
+                                <input type="text" id="ask_name" name="ask_name" placeholder="例如：小爱" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ask_email">邮箱（选填）</label>
+                                <input type="text" id="ask_email" name="ask_email" placeholder="方便我们回复你">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ask_content">你的问题 <span class="required">*</span></label>
+                            <textarea id="ask_content" name="ask_content" placeholder="请详细描述你的疑问…" required></textarea>
+                        </div>
+                        <div class="btn-wrap">
+                            <button type="submit" class="btn-ask">📩 提交问题</button>
+                        </div>
+                    </form>
+                    ${renderHistoryToggle()}
+                `;
+            }
+
+            // 历史记录折叠组件
+            function renderHistoryToggle() {
+                const questions = getQuestions();
+                if (questions.length === 0) return '';
+
+                const itemsHtml = questions.slice().reverse().map(q => `
+                    <div class="history-item">
+                        <strong>${q.name}</strong> 问：${q.content.substring(0, 40)}${q.content.length > 40 ? '…' : ''}
+                        <span style="color:#b0a098; font-size:12px; margin-left:8px;">${q.time}</span>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="history-toggle">
+                        <button onclick="toggleHistory()">📜 查看已提交的问题（${questions.length}条）</button>
+                        <div class="history-list" id="historyList">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 切换历史记录显示
+            window.toggleHistory = function() {
+                const el = document.getElementById('historyList');
+                if (el) el.classList.toggle('show');
+            };
+
+            // ----- 4. 表单提交处理（纯前端） -----
+            window.handleAskSubmit = function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('ask_name').value.trim();
+                const email = document.getElementById('ask_email').value.trim();
+                const content = document.getElementById('ask_content').value.trim();
+                const errorEl = document.getElementById('formError');
+
+                // 验证
+                if (!name || !content) {
+                    errorEl.textContent = '请填写姓名和问题内容（邮箱选填）';
+                    errorEl.style.display = 'flex';
+                    return;
+                }
+
+                // 隐藏错误
+                errorEl.style.display = 'none';
+
+                // 保存到 localStorage
+                saveQuestion(name, email, content);
+
+                // 跳转到成功状态（加参数避免刷新后丢失）
+                window.location.href = 'faq.html?success=1';
+            };
+
+            // ----- 5. 初始化 -----
+            renderAskApp();
+
+            // 如果 URL 有 success 参数，渲染成功后要清除参数（防止刷新后还显示成功）
+            // 但为了用户能通过「继续提问」按钮返回，我们保留参数但用 JS 控制显示
+            // 上面已经通过 isSuccess 控制了
+
+        })();
+    </script>
+
+</body>
+</html>

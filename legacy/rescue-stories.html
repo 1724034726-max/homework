@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救助故事 · 猫语森林</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 故事状态标签 */
+        .story-status {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 2px 16px;
+            border-radius: 30px;
+            margin-top: 6px;
+        }
+        .story-status.adopted {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .story-status.fostering {
+            background: #fff3e0;
+            color: #e67e22;
+        }
+        .story-status.rescuing {
+            background: #fce8e6;
+            color: #b33a34;
+        }
+        .story-status.waiting {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+    </style>
+    <script src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="猫语森林">
+                    <span class="logo-text">猫语<span>森林</span></span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="cat-guide.html">猫咪图鉴</a></li>
+                    <li><a href="rescue-stories.html">救助故事</a></li>
+                    <li><a href="cloud-adopt.html">云养猫</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                    <li id="userAreaContainer"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">💛 温暖救助故事</h2>
+        <p style="text-align:center; color:#8a7a6e; margin-top:-12px; margin-bottom:20px;">
+            每一个被拯救的生命，都值得被铭记 ✨
+        </p>
+
+        <!-- 故事 1：小橘 -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=600" alt="小橘">
+            <div class="story-text">
+                <h3>🍊 车底下的小橘</h3>
+                <span class="story-status adopted">✅ 已领养</span>
+                <p>去年冬天，志愿者在小区车底下发现了一只瑟瑟发抖的小橘猫，只有两个月大。经过半个月的治疗和喂养，小橘恢复了健康，现在已经被一个善良的家庭领养，过上了幸福生活。</p>
+                <a href="story-detail-xiaoju.html" class="btn" style="margin-top:8px;">阅读全文 →</a>
+            </div>
+        </div>
+
+        <!-- 故事 2：小黑 -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=600" alt="小黑">
+            <div class="story-text">
+                <h3>🖤 小黑重生记</h3>
+                <span class="story-status waiting">⏳ 等待领养</span>
+                <p>浑身是伤的小黑被发现在垃圾桶旁，紧急送医后进行了手术。现在伤口已经愈合，性格格外粘人，正在等待一个永远的家。</p>
+                <a href="#" class="btn" style="margin-top:8px; background:#8a7a6e;">了解详情 →</a>
+            </div>
+        </div>
+
+        <!-- 故事 3：三花妈妈 -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?auto=compress&cs=tinysrgb&w=600" alt="三花妈妈">
+            <div class="story-text">
+                <h3>🌸 三花妈妈的坚强</h3>
+                <span class="story-status fostering">🏠 中途家庭</span>
+                <p>三花妈妈在工地生下了四只宝宝，志愿者发现后把它们一起转移到了安全的中途之家。如今小猫们都已经断奶，即将开放领养。</p>
+                <a href="#" class="btn" style="margin-top:8px; background:#8a7a6e;">了解详情 →</a>
+            </div>
+        </div>
+
+        <!-- 故事 4：小白（新增） -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?auto=compress&cs=tinysrgb&w=600" alt="小白">
+            <div class="story-text">
+                <h3>🤍 小白：从恐惧到信任</h3>
+                <span class="story-status adopted">✅ 已领养</span>
+                <p>小白是一只被遗弃在公园的白色流浪猫，极度怕人。志愿者坚持投喂了三个月，终于取得了它的信任。如今小白已经在新家过着公主般的生活。</p>
+                <a href="#" class="btn" style="margin-top:8px; background:#8a7a6e;">阅读全文 →</a>
+            </div>
+        </div>
+
+        <!-- 故事 5：大橘（新增） -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/736582/pexels-photo-736582.jpeg?auto=compress&cs=tinysrgb&w=600" alt="大橘">
+            <div class="story-text">
+                <h3>🧡 大橘：被救的猫爸爸</h3>
+                <span class="story-status waiting">⏳ 等待领养</span>
+                <p>大橘是一只成年公猫，因为打架受伤严重被好心人救助。经过治疗已经康复，性格憨厚稳重，适合作为家庭伴侣猫。</p>
+                <a href="#" class="btn" style="margin-top:8px; background:#8a7a6e;">了解详情 →</a>
+            </div>
+        </div>
+
+        <!-- 故事 6：小花（新增） -->
+        <div class="story">
+            <img src="https://images.pexels.com/photos/1388153/pexels-photo-1388153.jpeg?auto=compress&cs=tinysrgb&w=600" alt="小花">
+            <div class="story-text">
+                <h3>🌺 小花：校园里的明星猫</h3>
+                <span class="story-status fostering">🏠 中途家庭</span>
+                <p>小花是嘉应学院校园里的流浪猫，深受学生喜爱。在一次意外受伤后，志愿者们集资为它做了手术，现在正在中途家庭休养。</p>
+                <a href="#" class="btn" style="margin-top:8px; background:#8a7a6e;">了解详情 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="#">📱 微信</a> | <a href="#">📧 微博</a> | <a href="#">📷 小红书</a>
+            </div>
+            <p>&copy; 2025 猫语森林. 邓云心 版权所有.</p>
+            <p>本网站为课堂实验作品，图片来源于网络，如有侵权请联系删除。</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const userData = localStorage.getItem('catforest_user');
+            if (!userData) {
+                window.location.href = 'login.html';
+                return;
+            }
+            try {
+                const user = JSON.parse(userData);
+                const container = document.getElementById('userAreaContainer');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="user-area">
+                            <span class="user-avatar">${user.avatar || '🐱'}</span>
+                            <span class="user-name">${user.name || '守护者'}</span>
+                            <button class="btn-logout" id="logoutBtn">退出</button>
+                        </div>
+                    `;
+                    document.getElementById('logoutBtn').addEventListener('click', function() {
+                        localStorage.removeItem('catforest_user');
+                        window.location.href = 'login.html';
+                    });
+                }
+            } catch (e) {
+                localStorage.removeItem('catforest_user');
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
+</body>
+</html>
